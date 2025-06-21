@@ -1,9 +1,9 @@
 export const getUserRole = (user) => {
-    console.log("🔍 Checking user role for:", user?.email);
+    console.log("Checking user role for:", user?.email);
     console.log("📋 Full user object:", user);
   
     if (!user) {
-      console.log("❌ No user provided");
+      console.log("No user provided");
       return null;
     }
   
@@ -20,19 +20,19 @@ export const getUserRole = (user) => {
     console.log("✅ Final roles array:", roles);
   
     if (roles.includes("admin")) {
-      console.log("🔑 User is ADMIN");
+      console.log("User is ADMIN");
       return "admin";
     }
   
     if (roles.includes("user")) {
-      console.log("👤 User is USER");
+      console.log("User is USER");
       return "user";
     }
   
     // ❌ REMOVE this line 👇 (or just remove omaralnabulsi1@gmail.com from the array)
     const adminEmails = ["22110038@htu.edu.jo"];
     if (adminEmails.includes(user.email)) {
-      console.log("🔑 User is ADMIN (by email fallback)");
+      console.log("User is ADMIN (by email fallback)");
       return "admin";
     }
   

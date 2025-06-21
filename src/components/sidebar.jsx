@@ -12,7 +12,7 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Sidebar = ({ isOpen }) => {
-  const { logout } = useAuth0();
+  const { user, logout } = useAuth0();
 
   const handleLogout = () => {
     logout({ returnTo: window.location.origin + "/login" });
@@ -62,8 +62,10 @@ const Sidebar = ({ isOpen }) => {
 
       {/* Profile Section */}
       <div className="mt-auto flex flex-col items-center gap-4">
-        <UserCircle 
-          className="w-12 h-12 text-white cursor-pointer hover:scale-110 hover:text-blue-400 transition-all"
+        <img
+          src={`https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || "Admin")}&background=random`}
+          alt="Profile"
+          className="w-12 h-12 rounded-full border-2 border-gray-600 hover:border-blue-400 hover:scale-110 transition-all cursor-pointer"
           title="Profile"
         />
         <LogOut 

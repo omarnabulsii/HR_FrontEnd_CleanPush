@@ -1,5 +1,3 @@
-"use client"
-
 import { useAuth0 } from "@auth0/auth0-react"
 import { useState, useEffect } from "react"
 import Sidebar from "../components/sidebar"
@@ -111,7 +109,14 @@ const HRDashboard = () => {
               </button>
               <h1 className="text-3xl font-bold text-gray-800 mt-1.5">HR Dashboard</h1>
             </div>
-            <div className="text-sm text-gray-600">Welcome back, {user?.name || user?.email}</div>
+            <div className="flex items-center gap-3">
+              <img
+                src={`https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || "Admin")}&background=random`}
+                alt="Admin Avatar"
+                className="w-10 h-10 rounded-full border"
+              />
+              <div className="text-sm text-gray-600">Welcome back, {user?.name || user?.email}</div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">

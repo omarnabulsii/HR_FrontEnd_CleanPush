@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import { AlignJustify } from "lucide-react"
 import UserSidebar from "../components/user-sidebar"
@@ -79,9 +77,11 @@ const UserInformation = () => {
           <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-4 md:p-6 mb-8 text-white">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 md:w-16 md:h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                <span className="text-lg md:text-2xl font-bold">
-                  {userInfo?.full_name?.charAt(0) || user?.name?.charAt(0) || "U"}
-                </span>
+                <img
+                  src={`https://ui-avatars.com/api/?name=${encodeURIComponent(userInfo?.full_name || user?.name || "User")}&background=0D8ABC&color=fff&size=128`}
+                  alt="User Avatar"
+                  className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-white/20"
+                />
               </div>
               <div>
                 <h2 className="text-lg md:text-2xl font-bold mb-1">

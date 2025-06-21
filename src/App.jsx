@@ -33,10 +33,12 @@ function App() {
     );
   }
 
+  // Allow public access to userjobrequest
   if (!isAuthenticated) {
     return (
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/userjobrequest" element={<UserJobRequest />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     );

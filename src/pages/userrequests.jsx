@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import Sidebar from "../components/user-sidebar"
 import { AlignJustify } from "lucide-react"

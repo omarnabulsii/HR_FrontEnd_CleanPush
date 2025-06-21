@@ -111,9 +111,12 @@ const EmployeeProfile = () => {
                 <div className="flex justify-center mb-6">
                   <div className="w-24 h-24 bg-gray-300 rounded-full overflow-hidden">
                     <img
-                      src="/placeholder.svg?height=96&width=96"
-                      alt="Employee"
+                      src={`https://ui-avatars.com/api/?name=${encodeURIComponent(employee?.full_name || "Employee")}&background=random`}
+                      alt="Employee Avatar"
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.src = "/placeholder.svg?height=96&width=96";
+                      }}
                     />
                   </div>
                 </div>

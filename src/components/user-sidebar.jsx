@@ -4,7 +4,7 @@ import { User, FileText, LogOut } from "lucide-react"
 import { useAuth0 } from "@auth0/auth0-react"
 
 const UserSidebar = ({ isOpen }) => {
-  const { logout } = useAuth0()
+  const { logout, user } = useAuth0()
 
   const handleLogout = () => {
     logout({ returnTo: window.location.origin })
@@ -38,8 +38,16 @@ const UserSidebar = ({ isOpen }) => {
         </Link>
       </nav>
 
-      {/* Logout Section */}
+      {/* Profile and Logout Section */}
       <div className="mt-auto flex flex-col items-center gap-4">
+        <Link to="/profile">
+          <img
+            src={`https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || "User")}&background=random`}
+            alt="Profile"
+            className="w-10 h-10 rounded-full border-2 border-gray-600 hover:border-blue-400 hover:scale-110 transition-all cursor-pointer"
+            title="Profile"
+          />
+        </Link>
         <button onClick={handleLogout}>
           <LogOut
             className="w-8 h-8 text-red-400 cursor-pointer hover:scale-110 hover:text-red-500 transition-all"

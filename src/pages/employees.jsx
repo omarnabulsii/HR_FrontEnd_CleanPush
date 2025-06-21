@@ -93,26 +93,72 @@ const EmployeesPage = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                   {employees.map((employee) => (
-                    <tr key={employee.id} className="hover:bg-gray-50 transition-colors duration-200">
-                      <td className="px-6 py-4 text-sm text-gray-900 font-medium">{employee.id}</td>
-                      <td className="px-6 py-4 text-sm text-gray-900">{employee.full_name}</td>
-                      <td className="px-6 py-4 text-sm text-gray-700">{employee.job_title}</td>
-                      <td className="px-6 py-4 text-sm text-gray-700">{employee.department}</td>
+                    <tr 
+                      key={employee.id} 
+                      className="hover:bg-gray-50 transition-all duration-200 ease-in-out border-b"
+                    >
+                      <td className="px-6 py-4 text-sm text-gray-900 font-medium whitespace-nowrap">
+                        #{employee.id}
+                      </td>
                       <td className="px-6 py-4">
-                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
-                          employee.status === "Active" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-                        }`}>
+                        <div className="flex items-center gap-3">
+                          <div className="flex-shrink-0">
+                            <img
+                              src={`https://ui-avatars.com/api/?name=${encodeURIComponent(employee.full_name)}&background=random&color=white&size=32`}
+                              alt={`${employee.full_name}'s avatar`}
+                              className="w-10 h-10 rounded-full object-cover border-2 border-gray-200"
+                            />
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="text-sm font-semibold text-gray-900">{employee.full_name}</span>
+                            <span className="text-xs text-gray-500">{employee.email}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="text-sm text-gray-900">{employee.job_title}</div>
+                        <div className="text-xs text-gray-500">Since {new Date().getFullYear()}</div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
+                          {employee.department}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span 
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
+                            ${employee.status === "Active" 
+                              ? "bg-green-100 text-green-800 border border-green-200" 
+                              : "bg-red-100 text-red-800 border border-red-200"
+                            }`}
+                        >
+                          <span className={`w-2 h-2 mr-1 rounded-full ${
+                            employee.status === "Active" ? "bg-green-400" : "bg-red-400"
+                          }`}/>
                           {employee.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-700">{employee.phone}</td>
-                      <td className="px-6 py-4 text-sm text-gray-700">{employee.email}</td>
+                      <td className="px-6 py-4 text-sm text-gray-700">
+                        <a href={`tel:${employee.phone}`} className="hover:text-blue-600 transition-colors">
+                          {employee.phone}
+                        </a>
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-700">
+                        <a href={`mailto:${employee.email}`} className="hover:text-blue-600 transition-colors">
+                          {employee.email}
+                        </a>
+                      </td>
                       <td className="px-6 py-4">
-                        <Link to={`/employee/${employee.id}`} state={{ employee }}>
-                          <button className="p-1 hover:bg-gray-100 rounded transition-colors duration-200">
+                        <div className="flex items-center gap-2">
+                          <Link 
+                            to={`/employee/${employee.id}`} 
+                            state={{ employee }}
+                            className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
+                            title="View Details"
+                          >
                             <MoreVertical className="w-4 h-4 text-gray-500" />
-                          </button>
-                        </Link>
+                          </Link>
+                        </div>
                       </td>
                     </tr>
                   ))}
